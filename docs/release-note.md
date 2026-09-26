@@ -1,3 +1,3 @@
 # Release focus
 
-Add and list tasks.
+Ship small, tested releases.
