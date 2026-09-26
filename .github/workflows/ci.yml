@@ -1,0 +1,31 @@
+name: Python checks
+
+on:
+  push:
+    branches: [main, "feature/**", "demo/**"]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Unit and command-line tests
+        run: python -m unittest discover -s tests -v
+      - name: Smoke test
+        env:
+          TASKBOARD_FILE: .local/ci-smoke.json
+        run: |
+          python taskboard.py add "Demonstrate Git workflow"
+          python taskboard.py list
