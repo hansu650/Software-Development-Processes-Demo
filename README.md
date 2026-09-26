@@ -4,7 +4,7 @@
 
 A small text-file project following the Git and GitHub example supplied in class. The example structure and successful workflow are retained, with my name and GitHub account filled in.
 
-[Classroom walkthrough](docs/DEMO.md) | [Commit history](https://github.com/hansu650/Software-Development-Processes-Demo/commits/main/) | [Pull requests](https://github.com/hansu650/Software-Development-Processes-Demo/pulls?q=is%3Apr+is%3Aclosed)
+[Classroom walkthrough](docs/DEMO.md) | [Commit history](https://github.com/hansu650/Software-Development-Processes-Demo/commits/main/) | [Merged classroom PR #2](https://github.com/hansu650/Software-Development-Processes-Demo/pull/2)
 
 ## Example files
 

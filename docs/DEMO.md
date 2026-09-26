@@ -83,6 +83,8 @@ cat notes.txt
 
 ## 5. Feature branch and Pull Request
 
+Completed example: [merged PR #2](https://github.com/hansu650/Software-Development-Processes-Demo/pull/2), adding only the two-line checklist.
+
 ```bash
 git switch -c feature/checklist
 printf 'Check status before commit.\nReview diff before push.\n' > checklist.txt
