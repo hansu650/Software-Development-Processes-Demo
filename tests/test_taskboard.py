@@ -29,7 +29,7 @@ class TaskBoardTests(unittest.TestCase):
     def test_storage_preserves_text_and_completion_state(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "nested" / "tasks.json"
-            board = TaskBoard([Task(3, "中文任务", True)])
+            board = TaskBoard([Task(3, "Prepare \u2605 demo", True)])
             save_board(board, path)
             self.assertEqual(load_board(path).tasks, board.tasks)
 

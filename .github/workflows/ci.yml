@@ -28,4 +28,5 @@ jobs:
           TASKBOARD_FILE: .local/ci-smoke.json
         run: |
           python taskboard.py add "Demonstrate Git workflow"
+          python taskboard.py done 1
           python taskboard.py list

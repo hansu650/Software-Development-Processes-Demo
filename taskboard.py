@@ -27,6 +27,13 @@ class TaskBoard:
         self.tasks.append(task)
         return task
 
+    def complete(self, task_id):
+        for task in self.tasks:
+            if task.id == task_id:
+                task.done = True
+                return task
+        raise ValueError(f"Task #{task_id} does not exist.")
+
 
 def load_board(path):
     path = Path(path)
@@ -68,6 +75,8 @@ def main(argv=None):
     commands = parser.add_subparsers(dest="command", required=True)
     add_command = commands.add_parser("add", help="Add a task")
     add_command.add_argument("title")
+    done_command = commands.add_parser("done", help="Complete a task")
+    done_command.add_argument("task_id", type=int)
     commands.add_parser("list", help="List tasks")
     args = parser.parse_args(argv)
     path = Path(os.environ.get("TASKBOARD_FILE", ".local/tasks.json"))
@@ -77,6 +86,10 @@ def main(argv=None):
             task = board.add(args.title)
             save_board(board, path)
             print(f"Added #{task.id}: {task.title}")
+        elif args.command == "done":
+            task = board.complete(args.task_id)
+            save_board(board, path)
+            print(f"Completed #{task.id}: {task.title}")
         else:
             for task in board.tasks:
                 marker = "x" if task.done else " "
