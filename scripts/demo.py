@@ -20,7 +20,7 @@ def main():
             ["done", "1"],
             ["list"],
         ]:
-            print("\n$ python taskboard.py " + " ".join(arguments), flush=True)
+            print("\n$ python taskboard.py " + subprocess.list2cmdline(arguments), flush=True)
             subprocess.run(
                 [sys.executable, str(ROOT / "taskboard.py"), *arguments],
                 cwd=ROOT, env=environment, check=True,
