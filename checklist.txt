@@ -1,0 +1,2 @@
+Check status before commit.
+Review diff before push.
