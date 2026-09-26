@@ -1,71 +1,46 @@
 # Software Development Processes
 
-**W5 · Implementation & Deployment · Git workflow demo**
+**Git and GitHub classroom demonstration by Qin Tian (@hansu650)**
 
-[![Python checks](https://github.com/hansu650/Software-Development-Processes-Demo/actions/workflows/ci.yml/badge.svg)](https://github.com/hansu650/Software-Development-Processes-Demo/actions/workflows/ci.yml)
+A small text-file project following the Git and GitHub example supplied in class. The example structure and successful workflow are retained, with my name and GitHub account filled in.
 
-[Classroom walkthrough](docs/DEMO.md) · [Pull request](https://github.com/hansu650/Software-Development-Processes-Demo/pull/1) · [Releases](https://github.com/hansu650/Software-Development-Processes-Demo/releases)
+[Classroom walkthrough](docs/DEMO.md) | [Commit history](https://github.com/hansu650/Software-Development-Processes-Demo/commits/main/) | [Pull requests](https://github.com/hansu650/Software-Development-Processes-Demo/pulls?q=is%3Apr+is%3Aclosed)
 
-A small Python task board demonstrates the successful Git workflow covered in this lecture. You can add a task, mark it complete and list the saved tasks. It uses only the Python standard library.
+## Example files
 
-## What to show
+| File | Purpose |
+|---|---|
+| `README.md` | Project description |
+| `notes.txt` | Learning notes changed across several commits |
+| `intro.txt` | My introduction, added on `feature/intro` |
+| `checklist.txt` | A short checklist, added through a pull request |
+| `.gitignore` | Rules that keep local files out of commits |
+| `.env.example` | A harmless configuration placeholder |
+
+## Git workflow
 
 ```text
-Create repository → add → commit → create feature branch
-         → implement + test → push → Pull Request → merge
-         → pull the updated main → tag → release
+edit -> status / diff -> add -> diff --cached -> commit -> push
+branch -> commit -> merge
+remote update -> pull --ff-only
+feature branch -> push -> Pull Request -> merge -> pull
 ```
 
-| Lecture topic | Demonstration in this repository |
-|---|---|
-| Version control, p. 4 | Small, named commits and a readable history |
-| Git and hosting, pp. 7–9 | Local Git repository and public GitHub remote |
-| Basic usage, p. 10 | `init`, `status`, `add`, `diff`, `commit` |
-| Remote collaboration, p. 11 | `clone`, `push`, `fetch`, `pull --ff-only` |
-| Branches, p. 12 | `feature/complete-task`, PR #1 and its merge |
-| Automated checks, pp. 17–19 | 11 passing tests and GitHub Actions |
-| Release and deployment, pp. 20–23 | Version tag, downloadable source package and local staging check |
+Git records local versions. GitHub hosts the remote repository and provides the Pull Request interface. A commit records a local version; a push shares commits; a pull retrieves and integrates remote changes.
 
-The slide numbers refer to the 25-page W5 lecture. PRs and GitHub Actions are practical extensions. The code and fictional task data were created for this standalone demonstration. Both clones use the same account; they demonstrate separate working copies.
+## Open the example
 
-## Run it
+Use Git Bash, starting in a directory without an existing `Software-Development-Processes-Demo` folder:
 
-Use a dedicated Conda environment with Python 3.12:
-
-```powershell
+```bash
 git clone https://github.com/hansu650/Software-Development-Processes-Demo.git
 cd Software-Development-Processes-Demo
-conda env create -f environment.yml
-conda activate software-development-processes-demo
-python scripts/demo.py
+cat notes.txt
+cat intro.txt
+cat checklist.txt
+git --no-pager log --oneline --graph v1.0.0..main
 ```
 
-The demo runs add → list → complete → list with temporary data, then shows the Git history. You can also use the commands individually:
+This example needs only Git and a text editor. `.env.example` contains an invalid placeholder; a local `.env` is ignored.
 
-```powershell
-python taskboard.py add "Prepare the Git demonstration"
-python taskboard.py list
-python taskboard.py done 1
-python taskboard.py list
-python -m unittest discover -s tests -v
-git log --graph --oneline --decorate --all
-```
-
-`done 1` assumes the task ID is 1 in a fresh data file. Use the ID printed by `add` if a file already contains tasks. The default data file is `.local/tasks.json`; set `TASKBOARD_FILE` to select another file. The app reads the environment, not `.env` files automatically.
-
-## Files to open
-
-| File or page | Purpose |
-|---|---|
-| `taskboard.py` | Small, readable application |
-| `tests/` | Unit, storage and command-line behaviour checks |
-| `.github/workflows/ci.yml` | Automatic tests on pushes, PRs and version tags |
-| `docs/DEMO.md` | Step-by-step presentation and a short speaking script |
-| `docs/verification.md` | Recorded checkpoints and release validation |
-| `.gitignore`, `.env.example` | Local data stays outside version control; configuration has a harmless example |
-
-This is a single-user teaching application. The release demonstrates distribution and a local staging run; no hosted production service is operated.
-
-## Git details
-
-Saving a file changes the working tree. `git add` stages a snapshot, `git commit` records it locally, and `git push` shares commits. `git pull` fetches and integrates changes; `--ff-only` requires a fast-forward. See the official [Git basic workflow](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [git pull](https://git-scm.com/docs/git-pull) and [branching and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging) documentation.
+The supplied lesson is the basis for this exercise. The earlier Python demonstration remains in the repository history and the `v1.0.0` tag.
