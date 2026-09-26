@@ -12,6 +12,7 @@ Use Python 3.12 or later in a dedicated environment:
 
 ```powershell
 python taskboard.py add "Prepare Git demonstration"
+python taskboard.py done 1
 python taskboard.py list
 python -m unittest discover -s tests -v
 ```
